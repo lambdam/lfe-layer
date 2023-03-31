@@ -41,7 +41,7 @@
 ;;; Code:
 
 (defconst lfe-packages
-  '()
+  '((lfe-mode :location local))
   "The list of Lisp packages required by the lfe layer.
 
 Each entry is either:
@@ -68,3 +68,8 @@ Each entry is either:
 
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
+
+(defun lfe/init-lfe-mode ()
+  (use-package lfe-mode
+    ;; :defer t
+    :init (add-hook 'lfe-mode-hook 'spacemacs/run-prog-mode-hooks)))
